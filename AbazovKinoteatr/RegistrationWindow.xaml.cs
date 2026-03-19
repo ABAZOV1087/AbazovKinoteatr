@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace AbazovKinoteatr.Windows
+namespace AbazovKinoteatr.Windows 
 {
     public partial class RegistrationWindow : Window
     {
