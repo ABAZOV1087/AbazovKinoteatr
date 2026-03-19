@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AbazovKinoteatr.Pages
+namespace AbazovKinoteatr.Pages 
 {
     public partial class ConfirmOrderPage : Page
     {
