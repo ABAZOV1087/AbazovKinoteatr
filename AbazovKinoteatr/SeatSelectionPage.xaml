@@ -1,0 +1,37 @@
+﻿<Page x:Class="AbazovKinoteatr.Pages.SeatSelectionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AbazovKinoteatr"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+       Title="Выбор места">
+    <Grid Margin="20">
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock Text="Выберите место" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+            <Border Background="Gray" Height="10" Width="400" Margin="0,0,0,50">
+                <TextBlock Text="ЭКРАН" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="White" FontSize="10"/>
+            </Border>
+
+            <ItemsControl x:Name="SeatsControl">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="5"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ToggleButton Content="{Binding SeatNumber}" Tag="{Binding SeatID}" Width="50" Height="50" Margin="5" Checked="SeatChecked"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
+                <Button Content="Оформить билет" Width="150" Height="40" Click="OrderClick"/>
+                <Button Content="Назад" Width="100" Margin="20,0,0,0" Click="BackClick"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

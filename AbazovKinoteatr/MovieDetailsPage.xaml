@@ -1,0 +1,41 @@
+﻿<Page x:Class="AbazovKinoteatr.Pages.MovieDetailsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AbazovKinoteatr"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+     Title="Детали фильма">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <Image Source="{Binding SelectedMovie.Poster}" Height="400" Stretch="Uniform"/>
+            <TextBlock Text="{Binding SelectedMovie.Title}" FontSize="24" FontWeight="Bold" TextWrapping="Wrap" Margin="0,10"/>
+            <TextBlock Text="{Binding SelectedMovie.Rating, StringFormat='Рейтинг: {0}'}" FontSize="18"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="20,0,0,0">
+            <TextBlock Text="Описание:" FontWeight="Bold"/>
+            <TextBlock Text="{Binding SelectedMovie.Description}" TextWrapping="Wrap" Margin="0,0,0,20"/>
+
+            <TextBlock Text="Сеансы:" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+            <ListView x:Name="SessionsList" MouseDoubleClick="SessionSelect">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Дата и время" DisplayMemberBinding="{Binding SessionDateTime, StringFormat='{}{0:dd.MM HH:mm}'}"/>
+                        <GridViewColumn Header="Зал" DisplayMemberBinding="{Binding Halls.HallName}"/>
+                        <GridViewColumn Header="Рейтинг зала" DisplayMemberBinding="{Binding Halls.Rating}"/>
+                        <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Price}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button Content="Назад" Click="BackClick" HorizontalAlignment="Left" Margin="0,20,0,0" Width="100"/>
+        </StackPanel>
+    </Grid>
+</Page>
