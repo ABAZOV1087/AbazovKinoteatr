@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
 
-namespace AbazovKinoteatr.Pages
+namespace AbazovKinoteatr.Pages 
 {
     public partial class SeatSelectionPage : Page
     {
