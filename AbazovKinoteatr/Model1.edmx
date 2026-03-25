@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище AbazovCinemaDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище AbazovCinemaDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Genres">
           <Key>
             <PropertyRef Name="GenreID" />
@@ -58,6 +58,16 @@
           <Property Name="HallID" Type="int" />
           <Property Name="SessionDateTime" Type="datetime" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Tickets">
           <Key>
@@ -182,6 +192,7 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Seats" EntityType="Self.Seats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Movies__GenreID__5629CD9C" Association="Self.FK__Movies__GenreID__5629CD9C">
@@ -217,8 +228,7 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AbazovCinemaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -250,7 +260,6 @@
           <Property Name="Rating" Type="Decimal" Precision="3" Scale="1" />
           <Property Name="ReleaseDate" Type="DateTime" Precision="0" />
           <Property Name="AgeRating" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Poster" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="GenreID" Type="Int32" />
           <NavigationProperty Name="Genres" Relationship="Self.FK__Movies__GenreID__5629CD9C" FromRole="Movies" ToRole="Genres" />
           <NavigationProperty Name="Sessions" Relationship="Self.FK__Sessions__MovieI__59063A47" FromRole="Movies" ToRole="Sessions" />
@@ -286,6 +295,16 @@
           <NavigationProperty Name="Halls" Relationship="Self.FK__Sessions__HallID__59FA5E80" FromRole="Sessions" ToRole="Halls" />
           <NavigationProperty Name="Movies" Relationship="Self.FK__Sessions__MovieI__59063A47" FromRole="Sessions" ToRole="Movies" />
           <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__Session__5FB337D6" FromRole="Sessions" ToRole="Tickets" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Tickets">
           <Key>
@@ -408,13 +427,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="AbazovCinemaDBEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="AbazovCinemaDBEntities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Genres" EntityType="Self.Genres" />
           <EntitySet Name="Halls" EntityType="Self.Halls" />
           <EntitySet Name="Movies" EntityType="Self.Movies" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Seats" EntityType="Self.Seats" />
           <EntitySet Name="Sessions" EntityType="Self.Sessions" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tickets" EntityType="Self.Tickets" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="FK__Movies__GenreID__5629CD9C" Association="Self.FK__Movies__GenreID__5629CD9C">
@@ -455,7 +475,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище AbazovCinemaDBModelContainer" CdmEntityContainer="AbazovCinemaDBEntities3">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AbazovCinemaDBModelContainer" CdmEntityContainer="AbazovCinemaDBEntities5">
           <EntitySetMapping Name="Genres">
             <EntityTypeMapping TypeName="AbazovCinemaDBModel.Genres">
               <MappingFragment StoreEntitySet="Genres">
@@ -482,7 +502,6 @@
                 <ScalarProperty Name="Rating" ColumnName="Rating" />
                 <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
                 <ScalarProperty Name="AgeRating" ColumnName="AgeRating" />
-                <ScalarProperty Name="Poster" ColumnName="Poster" />
                 <ScalarProperty Name="GenreID" ColumnName="GenreID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -513,6 +532,17 @@
                 <ScalarProperty Name="HallID" ColumnName="HallID" />
                 <ScalarProperty Name="SessionDateTime" ColumnName="SessionDateTime" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AbazovCinemaDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

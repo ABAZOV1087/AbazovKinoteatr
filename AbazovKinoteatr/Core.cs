@@ -8,7 +8,7 @@ namespace AbazovKinoteatr
 {
     public static class Core
     {
-        public static AbazovCinemaDBEntities3 Context = new AbazovCinemaDBEntities3();
+        public static AbazovCinemaDBEntities5 Context = new AbazovCinemaDBEntities5();
         public static Users CurrentUser = null;
     }
 }

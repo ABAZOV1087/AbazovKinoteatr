@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Windows;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace AbazovKinoteatr.Windows 
+namespace AbazovKinoteatr.Windows
 {
     public partial class RegistrationWindow : Window
     {
@@ -23,18 +12,36 @@ namespace AbazovKinoteatr.Windows
 
         private void RegisterClick(object sender, RoutedEventArgs e)
         {
-            var user = new Users { Login = LoginBox.Text, Password = PassBox.Password, FullName = NameBox.Text, RoleID = 1 };
-            Core.Context.Users.Add(user);
-            Core.Context.SaveChanges();
-            MessageBox.Show("Успех!");
-            new LoginWindow().Show();
-            this.Close();
+            if (Register(LoginBox.Text, PassBox.Password, NameBox.Text))
+            {
+                MessageBox.Show("Регистрация успешна");
+                new LoginWindow().Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Ошибка регистрации (возможно, логин занят)");
+            }
         }
 
         private void BackClick(object sender, RoutedEventArgs e)
         {
             new LoginWindow().Show();
             this.Close();
+        }
+
+        public bool Register(string login, string password, string name)
+        {
+            if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(name)) return false;
+            if (Core.Context.Users.Any(u => u.Login == login)) return false;
+
+            try
+            {
+                Core.Context.Users.Add(new Users { Login = login, Password = password, FullName = name, RoleID = 2 });
+                Core.Context.SaveChanges();
+                return true;
+            }
+            catch { return false; }
         }
     }
 }

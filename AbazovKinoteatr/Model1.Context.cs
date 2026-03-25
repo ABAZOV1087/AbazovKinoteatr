@@ -13,10 +13,10 @@ namespace AbazovKinoteatr
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AbazovCinemaDBEntities3 : DbContext
+    public partial class AbazovCinemaDBEntities5 : DbContext
     {
-        public AbazovCinemaDBEntities3()
-            : base("name=AbazovCinemaDBEntities3")
+        public AbazovCinemaDBEntities5()
+            : base("name=AbazovCinemaDBEntities5")
         {
         }
     
@@ -31,6 +31,7 @@ namespace AbazovKinoteatr
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Seats> Seats { get; set; }
         public virtual DbSet<Sessions> Sessions { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tickets> Tickets { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     }

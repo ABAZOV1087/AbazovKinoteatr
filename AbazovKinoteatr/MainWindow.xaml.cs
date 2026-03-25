@@ -22,5 +22,7 @@ namespace AbazovKinoteatr
             InitializeComponent();
             MainFrame.Navigate(new MainPage());
         }
+
     }
+
 }

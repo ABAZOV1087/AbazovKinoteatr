@@ -13,5 +13,16 @@
         <PasswordBox x:Name="PassBox"/>
         <Button Content="Войти" Margin="0,20,0,5" Click="LoginClick"/>
         <Button Content="Регистрация" Click="RegClick" Background="Transparent" BorderThickness="0" Foreground="Blue"/>
+        <StackPanel x:Name="CaptchaStack" Visibility="Collapsed">
+            <TextBlock x:Name="CaptchaPlaceholder" 
+               FontSize="24" 
+               HorizontalAlignment="Center" 
+               Margin="10" 
+               FontWeight="Bold"/>
+
+            <TextBox x:Name="CaptchaInput" Width="150" Margin="5"/>
+        </StackPanel>
     </StackPanel>
+    
+    
 </Window>

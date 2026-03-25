@@ -26,7 +26,6 @@ namespace AbazovKinoteatr
         public Nullable<decimal> Rating { get; set; }
         public Nullable<System.DateTime> ReleaseDate { get; set; }
         public string AgeRating { get; set; }
-        public string Poster { get; set; }
         public Nullable<int> GenreID { get; set; }
     
         public virtual Genres Genres { get; set; }
